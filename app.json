@@ -1,30 +1,31 @@
 {
   "expo": {
-    "name": "Mad Libs Fun",
-    "slug": "madlibs-app",
+    "name": "CS235_Final_Project",
+    "slug": "CS235_Final_Project",
     "version": "1.0.0",
-    "scheme": "madlibs",
-    "newArchEnabled": true,
     "orientation": "portrait",
-    "platforms": ["ios", "android"],
+    "scheme": "madlibs",
+    "plugins": ["expo-router"],
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#FFF8E7"
+      "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.example.madlibsapp"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFF8E7"
+        "backgroundColor": "#ffffff"
       },
-      "package": "com.example.madlibsapp"
+      "edgeToEdgeEnabled": true
     },
-    "plugins": ["expo-router"]
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
