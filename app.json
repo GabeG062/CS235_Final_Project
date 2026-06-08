@@ -4,12 +4,13 @@
     "slug": "madlibs-app",
     "version": "1.0.0",
     "scheme": "madlibs",
+    "newArchEnabled": true,
     "orientation": "portrait",
     "platforms": ["ios", "android"],
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#FFF8E7"
     },
