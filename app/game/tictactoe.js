@@ -1,5 +1,8 @@
 // app/game/tictactoe.js
 // Screen 2 — Tic-Tac-Toe
+// A simple Tic-Tac-Toe game
+// Created on: 06/08/2026
+// Last edited on: 06/10/2026
 import { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import GameScreen from "../../components/GameScreen";

@@ -1,6 +1,8 @@
 // app/game/minesweeper.js
 // Screen 3 — Minesweeper
 // Static 6×8 grid with mine counter and timer.
+// Created on: 06/08/2026
+// Last edited on: 06/10/2026
 import { useState, useRef} from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import GameScreen from "../../components/GameScreen";

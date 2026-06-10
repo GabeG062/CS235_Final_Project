@@ -1,7 +1,8 @@
 // app/index.js
 // Screen 1 — Home Screen
-// Shows four colourful cards, each linking to a game screen.
-// Uses inline styles so the app works even before NativeWind is fully wired up.
+// Shows two colourful cards, each linking to a game screen.
+// Created on: 06/08/2026
+// Last edited on: 06/10/2026
 
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native";
 import { useRouter } from "expo-router";

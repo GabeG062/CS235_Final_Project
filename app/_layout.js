@@ -1,7 +1,7 @@
 // app/_layout.js
 // Root layout for Expo Router.
-// Wraps the whole app in SafeAreaProvider (required by expo-router v4)
-// and sets up the Stack navigator.
+// Created on: 06/08/2026
+// Last edited on: 06/10/2026
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
