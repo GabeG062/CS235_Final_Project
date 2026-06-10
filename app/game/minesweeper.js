@@ -2,11 +2,88 @@
 // Screen 3 — Minesweeper
 // Static 6×8 grid with mine counter and timer. No game logic yet.
 
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, useState } from "react-native";
 import GameScreen from "../../components/GameScreen";
 
 const ROWS = 8;
 const COLS = 6;
+const [board, setBoard] = useState(() => generateBoard());
+
+
+function generateBoard()
+      {
+        const cells = Array.from({ length: ROWS * COLS});
+
+        for (let i = 0; i < cells.length; i++)
+        {
+          cells[i] =
+          {
+            index: i,
+            hasMine: false,
+            isRevealed: false,
+            neighborCount: 0
+          };
+        }
+        let minesPlaced = 0
+        while (minesPlaced <= 10)
+        {
+          const rand = Math.floor(Math.random() * cells.length);
+          if (cells[rand].hasMine = false)
+          {
+            cells[rand].hasMine == true;
+            minesPlaced++;
+          }
+        }
+        cells.forEach((cell, i) => {
+          const row = Math.floor(i / COLS);
+          const col = i % COLS;
+          if (cell.hasMine == true)
+          {
+            if (row - 1 >= 0 && col - 1 >= 0)
+            {/*top left*/
+              cells[(row - 1) * COLS + (col - 1)].neighborCount++;
+            }
+            if (row - 1 >= 0)
+            {/*top*/
+              cells[(row - 1) * COLS + (col)].neighborCount++;
+            }
+            if (row - 1 >= 0 && col + 1 <= 5)
+            {/*top right*/
+              cells[(row - 1) * COLS + (col + 1)].neighborCount++;
+            }
+            if (col - 1 >= 0)
+            {/*left*/
+              cells[(row) * COLS + (col - 1)].neighborCount++;
+            }
+            if (col + 1 <= 5)
+            {/*right*/
+              cells[(row) * COLS + (col + 1)].neighborCount++;
+            }
+            if (row + 1 <= 7 && col - 1 >= 0)
+            {/*bottom left*/
+              cells[(row + 1) * COLS + (col - 1)].neighborCount++;
+            }
+            if (row + 1 <= 7)
+            {/*bottom*/
+              cells[(row + 1) * COLS + (col)].neighborCount++;
+            }
+            if (row + 1 <= 7 && col + 1 <= 5)
+            {/*bottom right*/
+              cells[(row + 1) * COLS + (col + 1)].neighborCount++;
+            }
+          }
+        });
+        return cells;
+      }
+
+      function handlePress(index)
+      {
+        const cell = board[index];
+        if (cell.isRevealed) return;
+        const newBoard = [...board];
+        newBoard[index] = {...cell, isRevealed: true};
+        setBoard(newBoard)
+      }
 
 export default function Minesweeper() {
   return (
@@ -32,11 +109,29 @@ export default function Minesweeper() {
         {Array.from({ length: ROWS }, (_, row) => (
           <View key={row} style={styles.gridRow}>
             {Array.from({ length: COLS }, (_, col) => (
-              <TouchableOpacity key={col} style={styles.cell} activeOpacity={0.6} />
+              <TouchableOpacity 
+                key={col}
+                style={[
+                  styles.cell,
+                  board[row * COLS + col].isRevealed && styles.cellRevealed
+                ]}
+                onPress={() => handlePress(row * COLS + col)}
+              >
+                <Text>
+                  {board[row * COLS + col].isRevealed
+                    ? board[row * COLS + col].hasMine
+                      ? "💣"
+                      : board[row * COLS + col].neighborCount || ""
+                    : ""}
+                </Text>
+              </TouchableOpacity>
             ))}
           </View>
         ))}
       </View>
+
+      {/* Game Logic */}
+      OnPress = 
 
     </GameScreen>
   );
