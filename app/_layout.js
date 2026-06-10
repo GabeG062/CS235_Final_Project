@@ -1,5 +1,6 @@
 // app/_layout.js
 // Root layout for Expo Router.
+// Created by: Gabe Gross, with code from Claude AI
 // Created on: 06/08/2026
 // Last edited on: 06/10/2026
 import { Stack } from "expo-router";

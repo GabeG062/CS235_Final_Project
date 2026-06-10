@@ -1,6 +1,7 @@
 // app/index.js
 // Screen 1 — Home Screen
 // Shows two colourful cards, each linking to a game screen.
+// Created by: Gabe Gross, with code from Claude AI
 // Created on: 06/08/2026
 // Last edited on: 06/10/2026
 

@@ -1,6 +1,7 @@
 // app/game/minesweeper.js
 // Screen 3 — Minesweeper
 // Static 6×8 grid with mine counter and timer.
+// Created by: Gabe Gross, with code from Claude AI
 // Created on: 06/08/2026
 // Last edited on: 06/10/2026
 import { useState, useRef} from "react";
