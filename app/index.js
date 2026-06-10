@@ -11,8 +11,6 @@ import { StatusBar } from "expo-status-bar";
 const GAMES = [
   { route: "/game/tictactoe", emoji: "⭕", title: "Tic-Tac-Toe",   desc: "Classic X's and O's",    color: "#FF6B6B" },
   { route: "/game/minesweeper", emoji: "💣", title: "Minesweeper", desc: "Find the hidden mines",  color: "#6BCB77" },
-  { route: "/game/wordguess",  emoji: "🔤", title: "Word Guess",   desc: "Guess the mystery word", color: "#4D96FF" },
-  { route: "/game/memory",     emoji: "🃏", title: "Memory Match", desc: "Match the pairs",        color: "#C77DFF" },
 ];
 
 export default function HomeScreen() {

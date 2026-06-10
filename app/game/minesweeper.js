@@ -1,16 +1,20 @@
 // app/game/minesweeper.js
 // Screen 3 — Minesweeper
 // Static 6×8 grid with mine counter and timer. No game logic yet.
-
-import { View, Text, TouchableOpacity, StyleSheet, useState } from "react-native";
+import { useState, useRef} from "react";
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import GameScreen from "../../components/GameScreen";
 
 const ROWS = 8;
 const COLS = 6;
-const [board, setBoard] = useState(() => generateBoard());
 
 
-function generateBoard()
+export default function Minesweeper() {
+  const [board, setBoard] = useState(() => generateBoard());
+  const [time, setTime] = useState(0);
+  const timerRef = useRef(null);
+  {/* Game Logic */}
+  function generateBoard()
       {
         const cells = Array.from({ length: ROWS * COLS});
 
@@ -25,12 +29,12 @@ function generateBoard()
           };
         }
         let minesPlaced = 0
-        while (minesPlaced <= 10)
+        while (minesPlaced < 10)
         {
           const rand = Math.floor(Math.random() * cells.length);
-          if (cells[rand].hasMine = false)
+          if (cells[rand].hasMine == false)
           {
-            cells[rand].hasMine == true;
+            cells[rand].hasMine = true;
             minesPlaced++;
           }
         }
@@ -79,13 +83,43 @@ function generateBoard()
       function handlePress(index)
       {
         const cell = board[index];
+        console.log("pressed cell:", index, "hasMine:", cell.hasMine);
         if (cell.isRevealed) return;
         const newBoard = [...board];
         newBoard[index] = {...cell, isRevealed: true};
         setBoard(newBoard)
+        StartTimer();
+        if (cell.hasMine) GameEnd(index)
+          
       }
 
-export default function Minesweeper() {
+      function GameEnd()
+      {
+        const newBoard = board.map(cell => 
+          {
+          if (cell.hasMine) return { ...cell, isRevealed: true };
+          return cell;
+          });
+          setBoard(newBoard);
+
+        StopTimer();
+
+        Alert.alert ("You Lose","exit and re-enter to restart");
+      }
+      function StartTimer()
+      {
+        if (timerRef.current) return;
+
+        timerRef.current = setInterval(() => 
+        {
+          setTime(prev => prev + 1);;  
+        }, 1000)
+      }
+      function StopTimer()
+      {
+        clearInterval(timerRef.current);
+      }
+
   return (
     <GameScreen title="Minesweeper" emoji="💣" color="#6BCB77">
 
@@ -100,7 +134,7 @@ export default function Minesweeper() {
         </TouchableOpacity>
         <View style={styles.statBox}>
           <Text style={styles.statLabel}>TIME</Text>
-          <Text style={styles.statValue}>⏱ 0</Text>
+          <Text style={styles.statValue}>⏱ {time}</Text>
         </View>
       </View>
 
@@ -121,7 +155,7 @@ export default function Minesweeper() {
                   {board[row * COLS + col].isRevealed
                     ? board[row * COLS + col].hasMine
                       ? "💣"
-                      : board[row * COLS + col].neighborCount || ""
+                      : board[row * COLS + col].neighborCount
                     : ""}
                 </Text>
               </TouchableOpacity>
@@ -129,9 +163,6 @@ export default function Minesweeper() {
           </View>
         ))}
       </View>
-
-      {/* Game Logic */}
-      OnPress = 
 
     </GameScreen>
   );
