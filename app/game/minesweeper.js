@@ -1,6 +1,6 @@
 // app/game/minesweeper.js
 // Screen 3 — Minesweeper
-// Static 6×8 grid with mine counter and timer. No game logic yet.
+// Static 6×8 grid with mine counter and timer.
 import { useState, useRef} from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import GameScreen from "../../components/GameScreen";
@@ -83,7 +83,6 @@ export default function Minesweeper() {
       function handlePress(index)
       {
         const cell = board[index];
-        console.log("pressed cell:", index, "hasMine:", cell.hasMine);
         if (cell.isRevealed) return;
         const newBoard = [...board];
         newBoard[index] = {...cell, isRevealed: true};
